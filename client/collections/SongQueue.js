@@ -11,27 +11,18 @@ var SongQueue = Backbone.Collection.extend({
     });
 
     this.on('ended', function() {
-      this.remove(this.at(0));
+      this.dequeue();
       if (!!this.at(0)) {
         this.playFirst();
       }
     });
 
     this.on('dequeue', function() {
-      this.remove();
-    });
-
-    this.on('play', function() {
-      // if (this.length === 1) {
-      //   this.playFirst();
-      // } else {
-      //   this.play();
-      // }
+      this.dequeue();
     });
 
     this.on('enqueue', function() {
-      console.log('reached');
-      this.add();
+      this.enqueue();
     });
 
   },
@@ -40,12 +31,12 @@ var SongQueue = Backbone.Collection.extend({
     this.at(0).play();
   },
 
-  // ended: function() {
-  //   this.remove(this.at(0)); 
-  // },
+  dequeue: function() {
+    this.remove(this.at(0)); 
+  },
 
-  // dequeue: function() {
-  //   this.remove(this.at(0));
-  // },
+  enqueue: function(song) {
+    this.add(song);
+  },
 
 });
