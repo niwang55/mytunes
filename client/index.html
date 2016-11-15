@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html>
-  <body>
+<body>
     <!-- Scripts may be placed anywhere on a page. But FYI, they block rendering of elements
-     below them until after the scripts load-->
+    below them until after the scripts load-->
     <script src="bower_components/jquery/jquery.min.js"></script>
     <script src="bower_components/underscore/underscore.js"></script>
     <script src="bower_components/backbone/backbone.js"></script>
 
     <script src="data/data.js"></script>
+    <script src="env/config.js"></script>
 
     <script src="models/SongModel.js"></script>
     <script src="collections/Songs.js"></script>
@@ -23,17 +24,21 @@
 
     <script>
       $(function() {
-        // set up model objects
-        var library = new Songs(songData);
-        // var songQueue = new SongQueue();
-        var app = new AppModel({library: library});
+        $.ajax({
+          type: 'GET',
+          url: 'https://api.parse.com/1/classes/songs',
+          success: function(data) {
+            var library = new Songs(data.results);
+            var app = new AppModel({library: library});
+            var appView = new AppView({model: app});
 
-        // build a view for the top level of the whole app
-        var appView = new AppView({model: app});
-
-        // put the view onto the screen
-        $('body').append(appView.render());
+            $('body').append(appView.render());
+          },
+          error: function(data) {
+            console.error(data);
+          }
+        });
       });
     </script>
-  </body>
+</body>
 </html>
