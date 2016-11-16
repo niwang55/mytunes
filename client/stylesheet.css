@@ -3,11 +3,7 @@ body {
   font-weight: lighter;
   font-size: 16px;
   background-image: url(seigaiha.png);
-  text-align: center;
-  margin: auto;
-  width: 25%;
-  padding: 10px;
-  text-align: center;
+  padding: 25px;
 }
 
 h1 {
@@ -15,11 +11,10 @@ h1 {
 }
 
 table {
-  text-align: center;
 }
 
 tr {
-  text-align: center;
+  margin-left: 50px;
 }
 
 .library-artist {
@@ -27,7 +22,7 @@ tr {
 }
 
 .library-song {
-  padding-left: 5px;
+  padding-left: 25px;
 }
 
 .songqueue-artist {
@@ -35,5 +30,9 @@ tr {
 }
 
 .songqueue-song {
-  padding-left: 5px;
+  padding-left: 25px;
+}
+
+.play-counter {
+  padding-left: 50px;
 }

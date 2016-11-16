@@ -3,6 +3,8 @@ var LibraryEntryView = Backbone.View.extend({
 
   tagName: 'tr',
 
+  // vote: this.model.getCount(),
+
   template: _.template('<td class="library-artist">(<%= artist %>)</td><td class="library-song"><%= title %></td>'),
 
   events: {
@@ -12,7 +14,8 @@ var LibraryEntryView = Backbone.View.extend({
   },
 
   render: function() {
-    return this.$el.html(this.template(this.model.attributes));
+    var playCountDiv = `<div class="play-counter">Play Count: ${this.model.get('playCount')}</div>`;
+    return this.$el.html(this.template(this.model.attributes)).append(playCountDiv);
   }
 
 });

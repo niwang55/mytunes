@@ -37,6 +37,6 @@ var SongQueue = Backbone.Collection.extend({
 
   enqueue: function(song) {
     this.add(song);
-  },
+  }
 
 });
