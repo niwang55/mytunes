@@ -8,7 +8,7 @@ var Songs = Backbone.Collection.extend({
   },
 
   initialize: function(query) {
-    this.fetch();
+    this.fetch({data: { limit: 10 } });
   },
 
   model: SongModel
